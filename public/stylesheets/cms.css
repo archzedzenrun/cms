@@ -1,0 +1,27 @@
+body {
+  padding: 1em;
+  font-family: sans-serif;
+}
+
+.message {
+  padding: 10px;
+  background: #FFFF99;
+}
+
+.delete {
+  display: inline;
+}
+
+.user {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+li {
+  font-weight: bold;
+  padding: 5px;
+}
+
+.inline {
+  display: inline;
+}

@@ -1,0 +1,11 @@
+<form action="/users/signup", method="post">
+  <p>
+  <label for="name">Username:</label>
+    <input type="text" name="signup_name" maxlength="20" minlength="3" value="<%= params[:signup_name] %>">
+  </p>
+  <p>
+  <label for="password">Password:</label>
+    <input type="password" name="signup_password" minlength="5" value="<%= params[:signup_password] %>">
+  </p>
+  <input type="submit" value="Sign Up">
+</form>

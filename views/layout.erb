@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CMS</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/cms.css">
+    <script src="javascripts/jquery-3.7.0.js"></script>
+    <script src="javascripts/application.js"></script>
+  </head>
+  <body>
+    <% if session[:message] %>
+      <p class="message"><%= session.delete(:message) %></p>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
