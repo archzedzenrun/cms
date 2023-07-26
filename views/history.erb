@@ -1,0 +1,29 @@
+<% unless @files.empty? %>
+  <p>
+    <% if params[:sort] == 'desc' %>
+      <a href="/<%= params[:file_name] %>/history">List files in ascending order</a>
+    <% else %>
+      <a href="/<%= params[:file_name] %>/history?sort=desc">List files in descending order</a>
+    <% end %>
+  </p>
+<% end %>
+
+<p>File history for <%= params[:file_name] %>:</p>
+
+<% if @files.empty? %>
+  No file history found.
+<% end %>
+
+<ul>
+  <% @files.each do |file| %>
+    <li class=action>
+      <a href="/<%= params[:file_name] %>/history/<%= file %>"><%= file %></a>
+    </li>
+  <% end %>
+</ul>
+
+<% if session[:username] == 'admin' && !@files.empty? %>
+  <form class="delete" action="/<%= params[:file_name] %>/history/delete" method="post">
+    <button>Delete History</button>
+  </form>
+<% end %>

@@ -1,4 +1,5 @@
 body {
+  background-color: beige;
   padding: 1em;
   font-family: sans-serif;
 }
@@ -13,6 +14,11 @@ body {
 }
 
 .user {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.password {
   font-style: italic;
   font-size: 0.9em;
 }

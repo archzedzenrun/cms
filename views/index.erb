@@ -1,48 +1,76 @@
-<p>
-<% if params[:sort] == 'desc' %>
-  <a href="/">List files in ascending order</a>
-<% else %>
-  <a href="/?sort=desc">List files in descending order</button>
-<% end %>
-</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CMS</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/cms.css">
+    <script src="/javascripts/jquery-3.7.0.js"></script>
+    <script src="/javascripts/application.js"></script>
+  </head>
+  <body>
+    <% if session[:message] %>
+      <p class="message"><%= session.delete(:message) %></p>
+    <% end %>
 
-<ul>
-  <% @files.each do |file| %>
-    <li class=action>
-      <a href="/<%= file %>"><%= file %></a>
-        <form class="inline" action="/<%= file %>/edit" method="get">
-          <button>Edit</button>
-        </form>
-        <form class="inline" action="/<%= file %>/rename" method = "get">
-          <button>Rename</button>
-        </form>
-        <form class="inline" action="/<%= file %>/duplicate" method="post">
-          <button>Duplicate</button>
-        </form>
-        <form class="delete" action="/<%= file %>/delete" method="post">
-          <button>Delete</button>
-        </form>
-    </li>
-  <% end %>
-</ul>
-
-<p><a href="/new">New Document</a></p>
-
-<% if session[:username] %>
-  <form action="/users/signout" method="post">
-    <p class="user">
-      Signed in as <%= session[:username] %>.
-      <button type="submit">Sign Out</button>
+    <p>
+    <% if params[:sort] == 'desc' %>
+      <a href="/">List files in ascending order</a>
+    <% else %>
+      <a href="/?sort=desc">List files in descending order</a>
+    <% end %>
     </p>
-  </form>
-<% else %>
-  <form action="/users/signin" method="get">
-    <button type="submit">Sign In</button>
-  </form>
-<% end %>
 
-<p>
-<form action="/users/signup" method="get">
-  <button type="submit">Sign Up</button>
-</form>
-</p>
+    <ul>
+      <% @files.each do |file| %>
+        <li class=action>
+          <a href="/<%= file %>"><%= file %></a>
+            <form class="inline" action="/<%= file %>/history" method="get">
+              <button>History</button>
+            </form>
+            <form class="inline" action="/<%= file %>/edit" method="get">
+              <button>Edit</button>
+            </form>
+            <form class="inline" action="/<%= file %>/rename" method = "get">
+              <button>Rename</button>
+            </form>
+            <form class="inline" action="/<%= file %>/duplicate" method="post">
+              <button>Duplicate</button>
+            </form>
+            <form class="delete" action="/<%= file %>/delete" method="post">
+              <button>Delete</button>
+            </form>
+        </li>
+      <% end %>
+    </ul>
+
+    <p><a href="/new">New Document</a></p>
+
+    <% if session[:username] %>
+      <form action="/users/signout" method="post">
+        <p class="user">Signed in as <%= session[:username] %>.
+          <button type="submit">Sign Out</button>
+        </p>
+      </form>
+
+      <% if session[:username] == 'admin' %>
+        <form action="/users/list" method="get">
+          <button type="submit">User list</button>
+        </form>
+      <% end %>
+
+    <% else %>
+      <form action="/users/signin" method="get">
+        <button type="submit">Sign In</button>
+      </form>
+    <% end %>
+
+    <% if !session[:username] %>
+    <p>
+    <form action="/users/signup" method="get">
+      <button type="submit">Sign Up</button>
+    </form>
+    </p>
+    <% end %>
+
+  </body>
+</html>

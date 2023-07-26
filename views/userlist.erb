@@ -1,0 +1,13 @@
+User List:
+<ul>
+  <% @user_list.each do |user| %>
+    <li class=action>
+      <%= user[0] %>
+      <% if user[0] != 'admin' %>
+      <form class="delete" action="/users/delete/<%= user[0] %>" method="post">
+        <button>Delete User</button>
+      </form>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
